@@ -7,6 +7,69 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32102E9F17A9412D00CFA161 /* 1c.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6017A9412D00CFA161 /* 1c.js */; };
+		32102EA017A9412D00CFA161 /* actionscript.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6117A9412D00CFA161 /* actionscript.js */; };
+		32102EA117A9412D00CFA161 /* apache.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6217A9412D00CFA161 /* apache.js */; };
+		32102EA217A9412D00CFA161 /* applescript.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6317A9412D00CFA161 /* applescript.js */; };
+		32102EA317A9412D00CFA161 /* asciidoc.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6417A9412D00CFA161 /* asciidoc.js */; };
+		32102EA417A9412D00CFA161 /* avrasm.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6517A9412D00CFA161 /* avrasm.js */; };
+		32102EA517A9412D00CFA161 /* axapta.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6617A9412D00CFA161 /* axapta.js */; };
+		32102EA617A9412D00CFA161 /* bash.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6717A9412D00CFA161 /* bash.js */; };
+		32102EA717A9412D00CFA161 /* brainfuck.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6817A9412D00CFA161 /* brainfuck.js */; };
+		32102EA817A9412D00CFA161 /* clojure.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6917A9412D00CFA161 /* clojure.js */; };
+		32102EA917A9412D00CFA161 /* cmake.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6A17A9412D00CFA161 /* cmake.js */; };
+		32102EAA17A9412D00CFA161 /* coffeescript.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6B17A9412D00CFA161 /* coffeescript.js */; };
+		32102EAB17A9412D00CFA161 /* cpp.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6C17A9412D00CFA161 /* cpp.js */; };
+		32102EAC17A9412D00CFA161 /* cs.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6D17A9412D00CFA161 /* cs.js */; };
+		32102EAD17A9412D00CFA161 /* css.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6E17A9412D00CFA161 /* css.js */; };
+		32102EAE17A9412D00CFA161 /* d.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E6F17A9412D00CFA161 /* d.js */; };
+		32102EAF17A9412D00CFA161 /* delphi.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7017A9412D00CFA161 /* delphi.js */; };
+		32102EB017A9412D00CFA161 /* diff.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7117A9412D00CFA161 /* diff.js */; };
+		32102EB117A9412D00CFA161 /* django.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7217A9412D00CFA161 /* django.js */; };
+		32102EB217A9412D00CFA161 /* dos.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7317A9412D00CFA161 /* dos.js */; };
+		32102EB317A9412D00CFA161 /* erlang-repl.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7417A9412D00CFA161 /* erlang-repl.js */; };
+		32102EB417A9412D00CFA161 /* erlang.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7517A9412D00CFA161 /* erlang.js */; };
+		32102EB517A9412D00CFA161 /* fsharp.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7617A9412D00CFA161 /* fsharp.js */; };
+		32102EB617A9412D00CFA161 /* glsl.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7717A9412D00CFA161 /* glsl.js */; };
+		32102EB717A9412D00CFA161 /* go.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7817A9412D00CFA161 /* go.js */; };
+		32102EB817A9412D00CFA161 /* haml.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7917A9412D00CFA161 /* haml.js */; };
+		32102EB917A9412D00CFA161 /* handlebars.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7A17A9412D00CFA161 /* handlebars.js */; };
+		32102EBA17A9412D00CFA161 /* haskell.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7B17A9412D00CFA161 /* haskell.js */; };
+		32102EBB17A9412D00CFA161 /* http.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7C17A9412D00CFA161 /* http.js */; };
+		32102EBC17A9412D00CFA161 /* ini.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7D17A9412D00CFA161 /* ini.js */; };
+		32102EBD17A9412D00CFA161 /* java.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7E17A9412D00CFA161 /* java.js */; };
+		32102EBE17A9412D00CFA161 /* javascript.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E7F17A9412D00CFA161 /* javascript.js */; };
+		32102EBF17A9412D00CFA161 /* json.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8017A9412D00CFA161 /* json.js */; };
+		32102EC017A9412D00CFA161 /* lasso.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8117A9412D00CFA161 /* lasso.js */; };
+		32102EC117A9412D00CFA161 /* lisp.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8217A9412D00CFA161 /* lisp.js */; };
+		32102EC217A9412D00CFA161 /* lua.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8317A9412D00CFA161 /* lua.js */; };
+		32102EC317A9412D00CFA161 /* markdown.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8417A9412D00CFA161 /* markdown.js */; };
+		32102EC417A9412D00CFA161 /* matlab.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8517A9412D00CFA161 /* matlab.js */; };
+		32102EC517A9412D00CFA161 /* mel.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8617A9412D00CFA161 /* mel.js */; };
+		32102EC617A9412D00CFA161 /* mizar.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8717A9412D00CFA161 /* mizar.js */; };
+		32102EC717A9412D00CFA161 /* nginx.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8817A9412D00CFA161 /* nginx.js */; };
+		32102EC817A9412D00CFA161 /* objectivec.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8917A9412D00CFA161 /* objectivec.js */; };
+		32102EC917A9412D00CFA161 /* parser3.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8A17A9412D00CFA161 /* parser3.js */; };
+		32102ECA17A9412D00CFA161 /* perl.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8B17A9412D00CFA161 /* perl.js */; };
+		32102ECB17A9412D00CFA161 /* php.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8C17A9412D00CFA161 /* php.js */; };
+		32102ECC17A9412D00CFA161 /* profile.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8D17A9412D00CFA161 /* profile.js */; };
+		32102ECD17A9412D00CFA161 /* python.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8E17A9412D00CFA161 /* python.js */; };
+		32102ECE17A9412D00CFA161 /* r.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E8F17A9412D00CFA161 /* r.js */; };
+		32102ECF17A9412D00CFA161 /* rib.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9017A9412D00CFA161 /* rib.js */; };
+		32102ED017A9412D00CFA161 /* rsl.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9117A9412D00CFA161 /* rsl.js */; };
+		32102ED117A9412D00CFA161 /* ruby.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9217A9412D00CFA161 /* ruby.js */; };
+		32102ED217A9412D00CFA161 /* ruleslanguage.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9317A9412D00CFA161 /* ruleslanguage.js */; };
+		32102ED317A9412D00CFA161 /* rust.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9417A9412D00CFA161 /* rust.js */; };
+		32102ED417A9412D00CFA161 /* scala.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9517A9412D00CFA161 /* scala.js */; };
+		32102ED517A9412D00CFA161 /* scss.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9617A9412D00CFA161 /* scss.js */; };
+		32102ED617A9412D00CFA161 /* smalltalk.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9717A9412D00CFA161 /* smalltalk.js */; };
+		32102ED717A9412D00CFA161 /* sql.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9817A9412D00CFA161 /* sql.js */; };
+		32102ED817A9412D00CFA161 /* tex.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9917A9412D00CFA161 /* tex.js */; };
+		32102ED917A9412D00CFA161 /* vala.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9A17A9412D00CFA161 /* vala.js */; };
+		32102EDA17A9412D00CFA161 /* vbnet.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9B17A9412D00CFA161 /* vbnet.js */; };
+		32102EDB17A9412D00CFA161 /* vbscript.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9C17A9412D00CFA161 /* vbscript.js */; };
+		32102EDC17A9412D00CFA161 /* vhdl.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9D17A9412D00CFA161 /* vhdl.js */; };
+		32102EDD17A9412D00CFA161 /* xml.js in Sources */ = {isa = PBXBuildFile; fileRef = 32102E9E17A9412D00CFA161 /* xml.js */; };
 		3260A15417A8845F008792E6 /* Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F3AB94E1781C1250023348A /* Helpers.m */; };
 		3260A15617A884EC008792E6 /* JLTokenizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3260A15517A884EC008792E6 /* JLTokenizerTests.m */; };
 		8F3AB92A1781C0BA0023348A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F3AB9291781C0BA0023348A /* XCTest.framework */; };
@@ -47,6 +110,69 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32102E6017A9412D00CFA161 /* 1c.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = 1c.js; sourceTree = "<group>"; };
+		32102E6117A9412D00CFA161 /* actionscript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = actionscript.js; sourceTree = "<group>"; };
+		32102E6217A9412D00CFA161 /* apache.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = apache.js; sourceTree = "<group>"; };
+		32102E6317A9412D00CFA161 /* applescript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = applescript.js; sourceTree = "<group>"; };
+		32102E6417A9412D00CFA161 /* asciidoc.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = asciidoc.js; sourceTree = "<group>"; };
+		32102E6517A9412D00CFA161 /* avrasm.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = avrasm.js; sourceTree = "<group>"; };
+		32102E6617A9412D00CFA161 /* axapta.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = axapta.js; sourceTree = "<group>"; };
+		32102E6717A9412D00CFA161 /* bash.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bash.js; sourceTree = "<group>"; };
+		32102E6817A9412D00CFA161 /* brainfuck.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = brainfuck.js; sourceTree = "<group>"; };
+		32102E6917A9412D00CFA161 /* clojure.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = clojure.js; sourceTree = "<group>"; };
+		32102E6A17A9412D00CFA161 /* cmake.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cmake.js; sourceTree = "<group>"; };
+		32102E6B17A9412D00CFA161 /* coffeescript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = coffeescript.js; sourceTree = "<group>"; };
+		32102E6C17A9412D00CFA161 /* cpp.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cpp.js; sourceTree = "<group>"; };
+		32102E6D17A9412D00CFA161 /* cs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = cs.js; sourceTree = "<group>"; };
+		32102E6E17A9412D00CFA161 /* css.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = css.js; sourceTree = "<group>"; };
+		32102E6F17A9412D00CFA161 /* d.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = d.js; sourceTree = "<group>"; };
+		32102E7017A9412D00CFA161 /* delphi.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = delphi.js; sourceTree = "<group>"; };
+		32102E7117A9412D00CFA161 /* diff.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = diff.js; sourceTree = "<group>"; };
+		32102E7217A9412D00CFA161 /* django.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = django.js; sourceTree = "<group>"; };
+		32102E7317A9412D00CFA161 /* dos.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dos.js; sourceTree = "<group>"; };
+		32102E7417A9412D00CFA161 /* erlang-repl.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "erlang-repl.js"; sourceTree = "<group>"; };
+		32102E7517A9412D00CFA161 /* erlang.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = erlang.js; sourceTree = "<group>"; };
+		32102E7617A9412D00CFA161 /* fsharp.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = fsharp.js; sourceTree = "<group>"; };
+		32102E7717A9412D00CFA161 /* glsl.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = glsl.js; sourceTree = "<group>"; };
+		32102E7817A9412D00CFA161 /* go.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = go.js; sourceTree = "<group>"; };
+		32102E7917A9412D00CFA161 /* haml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = haml.js; sourceTree = "<group>"; };
+		32102E7A17A9412D00CFA161 /* handlebars.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = handlebars.js; sourceTree = "<group>"; };
+		32102E7B17A9412D00CFA161 /* haskell.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = haskell.js; sourceTree = "<group>"; };
+		32102E7C17A9412D00CFA161 /* http.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = http.js; sourceTree = "<group>"; };
+		32102E7D17A9412D00CFA161 /* ini.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ini.js; sourceTree = "<group>"; };
+		32102E7E17A9412D00CFA161 /* java.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = java.js; sourceTree = "<group>"; };
+		32102E7F17A9412D00CFA161 /* javascript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = javascript.js; sourceTree = "<group>"; };
+		32102E8017A9412D00CFA161 /* json.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = json.js; sourceTree = "<group>"; };
+		32102E8117A9412D00CFA161 /* lasso.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = lasso.js; sourceTree = "<group>"; };
+		32102E8217A9412D00CFA161 /* lisp.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = lisp.js; sourceTree = "<group>"; };
+		32102E8317A9412D00CFA161 /* lua.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = lua.js; sourceTree = "<group>"; };
+		32102E8417A9412D00CFA161 /* markdown.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = markdown.js; sourceTree = "<group>"; };
+		32102E8517A9412D00CFA161 /* matlab.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = matlab.js; sourceTree = "<group>"; };
+		32102E8617A9412D00CFA161 /* mel.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mel.js; sourceTree = "<group>"; };
+		32102E8717A9412D00CFA161 /* mizar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mizar.js; sourceTree = "<group>"; };
+		32102E8817A9412D00CFA161 /* nginx.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = nginx.js; sourceTree = "<group>"; };
+		32102E8917A9412D00CFA161 /* objectivec.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = objectivec.js; sourceTree = "<group>"; };
+		32102E8A17A9412D00CFA161 /* parser3.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = parser3.js; sourceTree = "<group>"; };
+		32102E8B17A9412D00CFA161 /* perl.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = perl.js; sourceTree = "<group>"; };
+		32102E8C17A9412D00CFA161 /* php.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = php.js; sourceTree = "<group>"; };
+		32102E8D17A9412D00CFA161 /* profile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = profile.js; sourceTree = "<group>"; };
+		32102E8E17A9412D00CFA161 /* python.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = python.js; sourceTree = "<group>"; };
+		32102E8F17A9412D00CFA161 /* r.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = r.js; sourceTree = "<group>"; };
+		32102E9017A9412D00CFA161 /* rib.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = rib.js; sourceTree = "<group>"; };
+		32102E9117A9412D00CFA161 /* rsl.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = rsl.js; sourceTree = "<group>"; };
+		32102E9217A9412D00CFA161 /* ruby.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ruby.js; sourceTree = "<group>"; };
+		32102E9317A9412D00CFA161 /* ruleslanguage.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ruleslanguage.js; sourceTree = "<group>"; };
+		32102E9417A9412D00CFA161 /* rust.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = rust.js; sourceTree = "<group>"; };
+		32102E9517A9412D00CFA161 /* scala.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = scala.js; sourceTree = "<group>"; };
+		32102E9617A9412D00CFA161 /* scss.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = scss.js; sourceTree = "<group>"; };
+		32102E9717A9412D00CFA161 /* smalltalk.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = smalltalk.js; sourceTree = "<group>"; };
+		32102E9817A9412D00CFA161 /* sql.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sql.js; sourceTree = "<group>"; };
+		32102E9917A9412D00CFA161 /* tex.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = tex.js; sourceTree = "<group>"; };
+		32102E9A17A9412D00CFA161 /* vala.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = vala.js; sourceTree = "<group>"; };
+		32102E9B17A9412D00CFA161 /* vbnet.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = vbnet.js; sourceTree = "<group>"; };
+		32102E9C17A9412D00CFA161 /* vbscript.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = vbscript.js; sourceTree = "<group>"; };
+		32102E9D17A9412D00CFA161 /* vhdl.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = vhdl.js; sourceTree = "<group>"; };
+		32102E9E17A9412D00CFA161 /* xml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = xml.js; sourceTree = "<group>"; };
 		3260A15517A884EC008792E6 /* JLTokenizerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLTokenizerTests.m; sourceTree = "<group>"; };
 		8F3AB9181781C0BA0023348A /* libChromatism.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libChromatism.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F3AB91B1781C0BA0023348A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +228,77 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32102E5F17A9412D00CFA161 /* languages */ = {
+			isa = PBXGroup;
+			children = (
+				32102E6017A9412D00CFA161 /* 1c.js */,
+				32102E6117A9412D00CFA161 /* actionscript.js */,
+				32102E6217A9412D00CFA161 /* apache.js */,
+				32102E6317A9412D00CFA161 /* applescript.js */,
+				32102E6417A9412D00CFA161 /* asciidoc.js */,
+				32102E6517A9412D00CFA161 /* avrasm.js */,
+				32102E6617A9412D00CFA161 /* axapta.js */,
+				32102E6717A9412D00CFA161 /* bash.js */,
+				32102E6817A9412D00CFA161 /* brainfuck.js */,
+				32102E6917A9412D00CFA161 /* clojure.js */,
+				32102E6A17A9412D00CFA161 /* cmake.js */,
+				32102E6B17A9412D00CFA161 /* coffeescript.js */,
+				32102E6C17A9412D00CFA161 /* cpp.js */,
+				32102E6D17A9412D00CFA161 /* cs.js */,
+				32102E6E17A9412D00CFA161 /* css.js */,
+				32102E6F17A9412D00CFA161 /* d.js */,
+				32102E7017A9412D00CFA161 /* delphi.js */,
+				32102E7117A9412D00CFA161 /* diff.js */,
+				32102E7217A9412D00CFA161 /* django.js */,
+				32102E7317A9412D00CFA161 /* dos.js */,
+				32102E7417A9412D00CFA161 /* erlang-repl.js */,
+				32102E7517A9412D00CFA161 /* erlang.js */,
+				32102E7617A9412D00CFA161 /* fsharp.js */,
+				32102E7717A9412D00CFA161 /* glsl.js */,
+				32102E7817A9412D00CFA161 /* go.js */,
+				32102E7917A9412D00CFA161 /* haml.js */,
+				32102E7A17A9412D00CFA161 /* handlebars.js */,
+				32102E7B17A9412D00CFA161 /* haskell.js */,
+				32102E7C17A9412D00CFA161 /* http.js */,
+				32102E7D17A9412D00CFA161 /* ini.js */,
+				32102E7E17A9412D00CFA161 /* java.js */,
+				32102E7F17A9412D00CFA161 /* javascript.js */,
+				32102E8017A9412D00CFA161 /* json.js */,
+				32102E8117A9412D00CFA161 /* lasso.js */,
+				32102E8217A9412D00CFA161 /* lisp.js */,
+				32102E8317A9412D00CFA161 /* lua.js */,
+				32102E8417A9412D00CFA161 /* markdown.js */,
+				32102E8517A9412D00CFA161 /* matlab.js */,
+				32102E8617A9412D00CFA161 /* mel.js */,
+				32102E8717A9412D00CFA161 /* mizar.js */,
+				32102E8817A9412D00CFA161 /* nginx.js */,
+				32102E8917A9412D00CFA161 /* objectivec.js */,
+				32102E8A17A9412D00CFA161 /* parser3.js */,
+				32102E8B17A9412D00CFA161 /* perl.js */,
+				32102E8C17A9412D00CFA161 /* php.js */,
+				32102E8D17A9412D00CFA161 /* profile.js */,
+				32102E8E17A9412D00CFA161 /* python.js */,
+				32102E8F17A9412D00CFA161 /* r.js */,
+				32102E9017A9412D00CFA161 /* rib.js */,
+				32102E9117A9412D00CFA161 /* rsl.js */,
+				32102E9217A9412D00CFA161 /* ruby.js */,
+				32102E9317A9412D00CFA161 /* ruleslanguage.js */,
+				32102E9417A9412D00CFA161 /* rust.js */,
+				32102E9517A9412D00CFA161 /* scala.js */,
+				32102E9617A9412D00CFA161 /* scss.js */,
+				32102E9717A9412D00CFA161 /* smalltalk.js */,
+				32102E9817A9412D00CFA161 /* sql.js */,
+				32102E9917A9412D00CFA161 /* tex.js */,
+				32102E9A17A9412D00CFA161 /* vala.js */,
+				32102E9B17A9412D00CFA161 /* vbnet.js */,
+				32102E9C17A9412D00CFA161 /* vbscript.js */,
+				32102E9D17A9412D00CFA161 /* vhdl.js */,
+				32102E9E17A9412D00CFA161 /* xml.js */,
+			);
+			name = languages;
+			path = ../../highlightJS/src/languages;
+			sourceTree = "<group>";
+		};
 		8F3AB90F1781C0BA0023348A = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +350,7 @@
 				8F3AB9501781C1250023348A /* JLScope.m */,
 				8F3AB9571781C1250023348A /* JLTokenPattern.h */,
 				8F3AB9581781C1250023348A /* JLTokenPattern.m */,
+				32102E5F17A9412D00CFA161 /* languages */,
 				8F3AB91E1781C0BA0023348A /* Supporting Files */,
 			);
 			path = Chromatism;
@@ -286,15 +484,78 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32102EBC17A9412D00CFA161 /* ini.js in Sources */,
 				8FA091A91791E99900179325 /* NSMutableAttributedString+Mush.m in Sources */,
+				32102ECE17A9412D00CFA161 /* r.js in Sources */,
+				32102EA317A9412D00CFA161 /* asciidoc.js in Sources */,
+				32102ECF17A9412D00CFA161 /* rib.js in Sources */,
+				32102EC817A9412D00CFA161 /* objectivec.js in Sources */,
+				32102EAE17A9412D00CFA161 /* d.js in Sources */,
+				32102EAD17A9412D00CFA161 /* css.js in Sources */,
+				32102EC617A9412D00CFA161 /* mizar.js in Sources */,
+				32102EA717A9412D00CFA161 /* brainfuck.js in Sources */,
+				32102EDD17A9412D00CFA161 /* xml.js in Sources */,
+				32102EA817A9412D00CFA161 /* clojure.js in Sources */,
+				32102EDA17A9412D00CFA161 /* vbnet.js in Sources */,
+				32102EB317A9412D00CFA161 /* erlang-repl.js in Sources */,
+				32102EB017A9412D00CFA161 /* diff.js in Sources */,
+				32102ED717A9412D00CFA161 /* sql.js in Sources */,
+				32102ECB17A9412D00CFA161 /* php.js in Sources */,
+				32102ED517A9412D00CFA161 /* scss.js in Sources */,
 				8F54EF241781CD87008C1609 /* JLTokenPattern.m in Sources */,
+				32102ED817A9412D00CFA161 /* tex.js in Sources */,
+				32102EDB17A9412D00CFA161 /* vbscript.js in Sources */,
+				32102EBE17A9412D00CFA161 /* javascript.js in Sources */,
+				32102EC317A9412D00CFA161 /* markdown.js in Sources */,
+				32102EAC17A9412D00CFA161 /* cs.js in Sources */,
+				32102EA517A9412D00CFA161 /* axapta.js in Sources */,
+				32102EBD17A9412D00CFA161 /* java.js in Sources */,
+				32102EA017A9412D00CFA161 /* actionscript.js in Sources */,
+				32102EBB17A9412D00CFA161 /* http.js in Sources */,
 				8F54EF201781CD87008C1609 /* JLScope.m in Sources */,
 				8FA091A51791E62600179325 /* JLMarkdownTokenizer.m in Sources */,
+				32102EBF17A9412D00CFA161 /* json.js in Sources */,
+				32102ED417A9412D00CFA161 /* scala.js in Sources */,
+				32102ED617A9412D00CFA161 /* smalltalk.js in Sources */,
 				8FA0CB101795F41B00FF8EB1 /* JLTextView.m in Sources */,
 				8F54EF1F1781CD87008C1609 /* Helpers.m in Sources */,
+				32102EB917A9412D00CFA161 /* handlebars.js in Sources */,
+				32102EC117A9412D00CFA161 /* lisp.js in Sources */,
+				32102EB717A9412D00CFA161 /* go.js in Sources */,
+				32102EB117A9412D00CFA161 /* django.js in Sources */,
+				32102E9F17A9412D00CFA161 /* 1c.js in Sources */,
+				32102ECD17A9412D00CFA161 /* python.js in Sources */,
 				8F54EF221781CD87008C1609 /* JLTextViewController.m in Sources */,
 				8F54EF231781CD87008C1609 /* JLTokenizer.m in Sources */,
+				32102ECC17A9412D00CFA161 /* profile.js in Sources */,
+				32102EA217A9412D00CFA161 /* applescript.js in Sources */,
+				32102EB217A9412D00CFA161 /* dos.js in Sources */,
+				32102EC517A9412D00CFA161 /* mel.js in Sources */,
+				32102EC217A9412D00CFA161 /* lua.js in Sources */,
+				32102EAA17A9412D00CFA161 /* coffeescript.js in Sources */,
+				32102EC717A9412D00CFA161 /* nginx.js in Sources */,
+				32102EC917A9412D00CFA161 /* parser3.js in Sources */,
+				32102EC417A9412D00CFA161 /* matlab.js in Sources */,
+				32102EC017A9412D00CFA161 /* lasso.js in Sources */,
+				32102EBA17A9412D00CFA161 /* haskell.js in Sources */,
+				32102EA617A9412D00CFA161 /* bash.js in Sources */,
+				32102EDC17A9412D00CFA161 /* vhdl.js in Sources */,
+				32102ED017A9412D00CFA161 /* rsl.js in Sources */,
+				32102ED117A9412D00CFA161 /* ruby.js in Sources */,
+				32102EB517A9412D00CFA161 /* fsharp.js in Sources */,
+				32102ED317A9412D00CFA161 /* rust.js in Sources */,
+				32102EB817A9412D00CFA161 /* haml.js in Sources */,
+				32102EA917A9412D00CFA161 /* cmake.js in Sources */,
+				32102ECA17A9412D00CFA161 /* perl.js in Sources */,
+				32102EAB17A9412D00CFA161 /* cpp.js in Sources */,
+				32102EB617A9412D00CFA161 /* glsl.js in Sources */,
+				32102EAF17A9412D00CFA161 /* delphi.js in Sources */,
+				32102ED217A9412D00CFA161 /* ruleslanguage.js in Sources */,
+				32102EA117A9412D00CFA161 /* apache.js in Sources */,
+				32102EA417A9412D00CFA161 /* avrasm.js in Sources */,
 				8F54EF1E1781CD87008C1609 /* Chromatism.m in Sources */,
+				32102ED917A9412D00CFA161 /* vala.js in Sources */,
+				32102EB417A9412D00CFA161 /* erlang.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
