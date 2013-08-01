@@ -72,6 +72,7 @@
 {
     NSAssert(!self.scope, @"Only call -perform to a rootlevel scope");
     [self iterateSubscopes];
+    if ([self.delegate respondsToSelector:@selector(scopeDidFinishPerforming:)]) [self.delegate scopeDidFinishPerforming:self];
 }
 
 - (void)performInIndexSet:(NSIndexSet *)set
@@ -79,6 +80,7 @@
     NSParameterAssert(set);
     self.set = [self.set intersectionWithSet:set];
     [self iterateSubscopes];
+    if ([self.delegate respondsToSelector:@selector(scopeDidFinishPerforming:)]) [self.delegate scopeDidFinishPerforming:self];
 }
 
 #pragma mark - Scope Hierarchy Management
@@ -126,6 +128,14 @@
 {
     if (!_set) _set = [NSMutableIndexSet indexSet];
     return _set;
+}
+
+#pragma mark - Debugging
+
+- (NSString *)description
+{
+    NSString *subscopes = [[[[self.subscopes valueForKey:@"description"] componentsJoinedByString:@"\n"] componentsSeparatedByString:@"\n"] componentsJoinedByString:@"\n\t\t"];
+    return [NSString stringWithFormat:@"%@, %@, nopaque: %i, nindexesSet:%@, \n subscopes, %@", NSStringFromClass(self.class), _identifier, _opaque, _set, subscopes];
 }
 
 #pragma mark - NSCopying Protocol

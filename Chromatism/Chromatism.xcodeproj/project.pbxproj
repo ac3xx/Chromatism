@@ -333,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				8F3AB9201781C0BA0023348A /* Chromatism.h */,
+				32102EE017A948F900CFA161 /* Chromatism+Internal.h */,
 				8F3AB9221781C0BA0023348A /* Chromatism.m */,
 				8F3AB9551781C1250023348A /* JLTokenizer.h */,
 				8F3AB9561781C1250023348A /* JLTokenizer.m */,
@@ -378,6 +379,8 @@
 		8F3AB9321781C0BB0023348A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				32102EEB17A95E2900CFA161 /* demo.txt */,
+				32102EEC17A95E2900CFA161 /* description.txt */,
 				8F3AB9331781C0BB0023348A /* ChromatismTests-Info.plist */,
 				8F3AB9341781C0BB0023348A /* InfoPlist.strings */,
 			);
@@ -391,6 +394,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32102EE117A948F900CFA161 /* Chromatism+Internal.h in Headers */,
 				8FA091A81791E99900179325 /* NSMutableAttributedString+Mush.h in Headers */,
 				8FA0CB0F1795F41B00FF8EB1 /* JLTextView.h in Headers */,
 				8F54EF0E1781C776008C1609 /* Chromatism.h in Headers */,
@@ -474,6 +478,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F3AB9361781C0BB0023348A /* InfoPlist.strings in Resources */,
+				32102EEE17A95E2900CFA161 /* description.txt in Resources */,
+				32102EED17A95E2900CFA161 /* demo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

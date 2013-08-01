@@ -40,78 +40,13 @@
 #import "JLTextViewController.h" 
 #import "JLScope.h"
 #import "JLTokenPattern.h"
-
-NSString *const JLTokenTypeText = @"text";
-NSString *const JLTokenTypeBackground = @"background";
-NSString *const JLTokenTypeComment = @"comment";
-NSString *const JLTokenTypeDocumentationComment = @"documentation_comment";
-NSString *const JLTokenTypeDocumentationCommentKeyword = @"documentation_comment_keyword";
-NSString *const JLTokenTypeString = @"string";
-NSString *const JLTokenTypeCharacter = @"character";
-NSString *const JLTokenTypeNumber = @"number";
-NSString *const JLTokenTypeKeyword = @"keyword";
-NSString *const JLTokenTypePreprocessor = @"preprocessor";
-NSString *const JLTokenTypeURL = @"url";
-NSString *const JLTokenTypeAttribute = @"attribute";
-NSString *const JLTokenTypeProject = @"project";
-NSString *const JLTokenTypeOther = @"other";
-NSString *const JLTokenTypeOtherMethodNames = @"other_method_names";
-NSString *const JLTokenTypeOtherClassNames = @"other_class_names";
-
+#import "Chromatism.h"
 
 @interface JLTokenizer ()
-{
-    NSString *_oldString;
-}
-
-+ (NSDictionary *)colorsFromTheme:(JLTokenizerTheme)theme;
 
 @end
 
 @implementation JLTokenizer
-@synthesize theme = _theme, themes = _themes, colors = _colors;
-
-#pragma mark - UITextViewDelegate
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    _oldString = nil;
-    
-    if (range.length == 0 && text.length == 1) {
-        // A normal character typed
-    }
-    else if (range.length == 1 && text.length == 0) {
-        // Backspace
-    }
-    else {
-        // Multicharacter edit
-    }
-    
-    if ([text isEqualToString:@"\n"]) {
-        // Return
-        // Start the new line with as many tabs or white spaces as the previous one.
-        NSRange lineRange = [textView.text lineRangeForRange:range];
-        NSRange prefixRange = [textView.text rangeOfString:@"[\\t| ]*" options:NSRegularExpressionSearch range:lineRange];
-        NSString *prefixString = [textView.text substringWithRange:prefixRange];
-        
-        UITextPosition *beginning = textView.beginningOfDocument;
-        UITextPosition *start = [textView positionFromPosition:beginning offset:range.location];
-        UITextPosition *stop = [textView positionFromPosition:start offset:range.length];
-        
-        UITextRange *textRange = [textView textRangeFromPosition:start toPosition:stop];
-        
-        [textView replaceRange:textRange withText:[NSString stringWithFormat:@"\n%@",prefixString]];
-        
-        return NO;
-    }
-    
-    if (range.length > 0)
-    {
-        _oldString = [textView.text substringWithRange:range];
-    }
-    
-    return YES;
-}
 
 #pragma mark - Scopes
 
@@ -154,76 +89,85 @@ NSString *const JLTokenTypeOtherClassNames = @"other_class_names";
 
 - (void)textStorage:(NSTextStorage *)textStorage didProcessEditing:(NSTextStorageEditActions)editedMask range:(NSRange)editedRange changeInLength:(NSInteger)delta
 {
+    // Measure performance
+    NSDate *date = [NSDate date];
    [self tokenizeTextStorage:textStorage withRange:[textStorage.string lineRangeForRange:editedRange]];
+    NSLog(@"Chromatism done tokenizing with time of %fms",ABS([date timeIntervalSinceNow]*1000));
+}
+
+#pragma mark - JLScope delegate
+
+- (void)scopeDidFinishPerforming:(JLScope *)scope
+{
+    if ([self.delegate respondsToSelector:@selector(scope:didFinishProcessing:)]) [self.delegate scope:scope didFinishProcessing:self];
 }
 
 #pragma mark - Tokenizing
 
+- (JLTokenPattern *)addToken:(NSString *)type withPattern:(NSString *)pattern andScope:(JLScope *)scope
+{
+    NSParameterAssert(type);
+    NSParameterAssert(pattern);
+    NSParameterAssert(scope);
+    UIColor *color = self.colors[type];
+    
+    NSAssert(color, @"%@ didn't return a color in color dictionary %@", type, self.colors);
+    
+    JLTokenPattern *token = [JLTokenPattern tokenPatternWithPattern:pattern andColor:self.colors[type]];
+    token.identifier = type;
+    [scope addSubscope:token];
+    return token;
+}
+
 - (void)tokenizeTextStorage:(NSTextStorage *)storage withRange:(NSRange)range
 {
-    // Measure performance
-    NSDate *date = [NSDate date];
-    
     // First, remove old attributes
     [self clearColorAttributesInRange:range textStorage:storage];
 
     JLScope *documentScope = [JLScope scopeWithTextStorage:storage];
     JLScope *rangeScope = [JLScope scopeWithRange:range inTextStorage:storage];
-
-    NSDictionary *colors = self.colors;
  
-    // Two types of comments
-    JLTokenPattern *comments1 = [JLTokenPattern tokenPatternWithPattern:@"/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/" andColor:colors[JLTokenTypeComment]];
-    JLTokenPattern *comments2 = [JLTokenPattern tokenPatternWithPattern:@"//.*+$" andColor:colors[JLTokenTypeComment]];
+    // Block and line comments
+    [self addToken:JLTokenTypeComment withPattern:@"/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+/" andScope:documentScope];
+    [self addToken:JLTokenTypeComment withPattern:@"//.*+$" andScope:rangeScope];
     
     // Preprocessor macros
-    JLTokenPattern *preprocessor = [JLTokenPattern tokenPatternWithPattern:@"#.*+$" andColor:colors[JLTokenTypePreprocessor]];
+    JLTokenPattern *preprocessor = [self addToken:JLTokenTypePreprocessor withPattern:@"^#.*+$" andScope:rangeScope];
     
-    // #import <Library/Library.h> - thing.
-    JLTokenPattern *importAngleBrackets = [JLTokenPattern tokenPatternWithPattern:@"<.*?>" andColor:colors[JLTokenTypeString]];
-    
+    // #import <Library/Library.h>
     // In xcode it only works for #import and #include, not all preprocessor statements.
-    importAngleBrackets.scope = preprocessor;
+    [self addToken:JLTokenTypeString withPattern:@"<.*?>" andScope:preprocessor];
     
     // Strings
-    JLTokenPattern *strings = [JLTokenPattern tokenPatternWithPattern:@"(\"|@\")[^\"\\n]*(@\"|\")" andColor:colors[JLTokenTypeString]];
-    [strings addScope:preprocessor];
+    [[self addToken:JLTokenTypeString withPattern:@"(\"|@\")[^\"\\n]*(@\"|\")" andScope:rangeScope] addScope:preprocessor];
     
     // Numbers
-    JLTokenPattern *numbers = [JLTokenPattern tokenPatternWithPattern:@"(?<=\\s)\\d+" andColor:colors[JLTokenTypeNumber]];
+    [self addToken:JLTokenTypeNumber withPattern:@"(?<=\\s)\\d+" andScope:rangeScope];
     
     // New literals, for example @[]
-    JLTokenPattern *literals = [JLTokenPattern tokenPatternWithPattern:@"@[\\(|\\{|\\[][^\\(\\{\\[]+[\\)|\\}|\\]]" andColor:colors[JLTokenTypeNumber]]; // New literals
-    
     // TODO: Literals don't search through multiple lines. Nor does it keep track of nested things.
-    literals.opaque = NO;
+    [[self addToken:JLTokenTypeNumber withPattern:@"@[\\(|\\{|\\[][^\\(\\{\\[]+[\\)|\\}|\\]]" andScope:rangeScope] setOpaque:NO];
     
     // C function names
-    JLTokenPattern *functions = [JLTokenPattern tokenPatternWithPattern:@"\\w+\\s*(?>\\(.*\\)" andColor:colors[JLTokenTypeOtherMethodNames]];
-    functions.captureGroup = 1;
+    [[self addToken:JLTokenTypeOtherMethodNames withPattern:@"\\w+\\s*(?>\\(.*\\)" andScope:rangeScope] setCaptureGroup:1];
     
     // Dot notation
-    JLTokenPattern *dots = [JLTokenPattern tokenPatternWithPattern:@"\\.(\\w+)" andColor:colors[JLTokenTypeOtherMethodNames]];
-    dots.captureGroup = 1;
-    
+    [[self addToken:JLTokenTypeOtherMethodNames withPattern:@"\\.(\\w+)" andScope:rangeScope] setCaptureGroup:1];
+
     // Method Calls
-    JLTokenPattern *methods1 = [JLTokenPattern tokenPatternWithPattern:@"\\[\\w+\\s+(\\w+)\\]" andColor:colors[JLTokenTypeOtherMethodNames]];
-    methods1.captureGroup = 1;
+    [[self addToken:JLTokenTypeOtherMethodNames withPattern:@"\\[\\w+\\s+(\\w+)\\]" andScope:rangeScope] setCaptureGroup:1];
     
     // Method call parts
-    JLTokenPattern *methods2 = [JLTokenPattern tokenPatternWithPattern:@"(?<=\\w+):\\s*[^\\s;\\]]+" andColor:colors[JLTokenTypeOtherMethodNames]];
-    methods2.captureGroup = 1;
+    [[self addToken:JLTokenTypeOtherMethodNames withPattern:@"(?<=\\w+):\\s*[^\\s;\\]]+" andScope:rangeScope] setCaptureGroup:1];
     
-    // NS and UI prefixes words
-    JLTokenPattern *appleClassNames = [JLTokenPattern tokenPatternWithPattern:@"(\\b(?>NS|UI))\\w+\\b" andColor:colors[JLTokenTypeOtherClassNames]];
-    JLTokenPattern *keywords1 = [JLTokenPattern tokenPatternWithPattern:@"(?<=\\b)(?>true|false|yes|no|TRUE|FALSE|bool|BOOL|nil|id|void|self|NULL|if|else|strong|weak|nonatomic|atomic|assign|copy|typedef|enum|auto|break|case|const|char|continue|do|default|double|extern|float|for|goto|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|volatile|while|nonatomic|atomic|nonatomic|readonly|super )(\\b)" andColor:colors[JLTokenTypeKeyword]];
-    JLTokenPattern *keywords2 = [JLTokenPattern tokenPatternWithPattern:@"@[a-zA-Z0-9_]+" andColor:colors[JLTokenTypeKeyword]];
+    [self addToken:JLTokenTypeKeyword withPattern:@"\\b(true|false|yes|no|TRUE|FALSE|bool|BOOL|nil|id|void|self|NULL|if|else|strong|weak|nonatomic|atomic|assign|copy|typedef|enum|auto|break|case|const|char|continue|do|default|double|extern|float|for|goto|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|volatile|while|nonatomic|atomic|nonatomic|readonly|super)\\b" andScope:rangeScope];
+    [self addToken:JLTokenTypeKeyword withPattern:@"@[a-zA-Z0-9_]+" andScope:rangeScope];
     
-    documentScope.subscopes = @[comments1, rangeScope];
-    rangeScope.subscopes = @[comments2, preprocessor, strings, numbers, literals, functions, dots, methods1, methods2, appleClassNames, keywords1, keywords2];
+    // Other Class Names
+    [self addToken:JLTokenTypeOtherClassNames withPattern:@"\\b[A-Z]{3}[a-zA-Z]*\\b" andScope:rangeScope];
     
+    [documentScope addSubscope:rangeScope];
     [documentScope perform];
-    NSLog(@"Chromatism done tokenizing with time of %fms",ABS([date timeIntervalSinceNow]*1000));
 }
 
 - (NSMutableAttributedString *)tokenizeString:(NSString *)string withDefaultAttributes:(NSDictionary *)attributes;
@@ -239,94 +183,5 @@ NSString *const JLTokenTypeOtherClassNames = @"other_class_names";
     [storage addAttribute:NSForegroundColorAttributeName value:self.colors[JLTokenTypeText] range:range];
 }
 
-#pragma mark - Color Themes
-
-- (NSDictionary *)defaultAttributes
-{
-    if (!_defaultAttributes) _defaultAttributes = @{NSForegroundColorAttributeName: self.colors[JLTokenTypeText], NSFontAttributeName : [UIFont fontWithName:@"Menlo" size:12]};
-    return _defaultAttributes;
-}
-
--(void)setTheme:(JLTokenizerTheme)theme
-{
-    self.colors = [self.class colorsFromTheme:theme];
-    self.textView.typingAttributes = @{ NSForegroundColorAttributeName : self.colors[JLTokenTypeText]};
-    _theme = theme;
-    
-    //Set font, text color and background color back to default
-    UIColor *backgroundColor = self.colors[JLTokenTypeBackground];
-    [self.textView setBackgroundColor:backgroundColor ? backgroundColor : [UIColor whiteColor] ];
-}
-
-- (NSDictionary *)colors
-{
-    if (!_colors) {
-        self.colors = [self.class colorsFromTheme:self.theme];
-    }
-    return _colors;
-}
-
-- (void)setColors:(NSDictionary *)colors
-{
-    _colors = colors;
-}
-
-- (NSArray *)themes
-{
-    if (!_themes) _themes = @[@(JLTokenizerThemeDefault),@(JLTokenizerThemeDusk)];
-    return _themes;
-}
-
-- (JLTokenizerTheme)theme
-{
-    if (!_theme) _theme = JLTokenizerThemeDefault;
-    return _theme;
-}
-
-// Just a bunch of colors
-+ (NSDictionary *)colorsFromTheme:(JLTokenizerTheme)theme
-{
-    NSDictionary* colors;
-    switch(theme) {
-        case JLTokenizerThemeDefault:
-            colors = @{JLTokenTypeText: [UIColor colorWithRed:0.0/255 green:0.0/255 blue:0.0/255 alpha:1],
-                       JLTokenTypeBackground: [UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:1],
-                       JLTokenTypeComment: [UIColor colorWithRed:0.0/255 green:131.0/255 blue:39.0/255 alpha:1],
-                       JLTokenTypeDocumentationComment: [UIColor colorWithRed:0.0/255 green:131.0/255 blue:39.0/255 alpha:1],
-                       JLTokenTypeDocumentationCommentKeyword: [UIColor colorWithRed:0.0/255 green:76.0/255 blue:29.0/255 alpha:1],
-                       JLTokenTypeString: [UIColor colorWithRed:211.0/255 green:45.0/255 blue:38.0/255 alpha:1],
-                       JLTokenTypeCharacter: [UIColor colorWithRed:40.0/255 green:52.0/255 blue:206.0/255 alpha:1],
-                       JLTokenTypeNumber: [UIColor colorWithRed:40.0/255 green:52.0/255 blue:206.0/255 alpha:1],
-                       JLTokenTypeKeyword: [UIColor colorWithRed:188.0/255 green:49.0/255 blue:156.0/255 alpha:1],
-                       JLTokenTypePreprocessor: [UIColor colorWithRed:120.0/255 green:72.0/255 blue:48.0/255 alpha:1],
-                       JLTokenTypeURL: [UIColor colorWithRed:21.0/255 green:67.0/255 blue:244.0/255 alpha:1],
-                       JLTokenTypeOther: [UIColor colorWithRed:113.0/255 green:65.0/255 blue:163.0/255 alpha:1],
-                       JLTokenTypeOtherMethodNames :  [UIColor colorWithHex:@"7040a6" alpha:1],
-                       JLTokenTypeOtherClassNames :  [UIColor colorWithHex:@"7040a6" alpha:1]
-                       
-                       
-                       
-                       };
-            break;
-        case JLTokenizerThemeDusk:
-            colors = @{JLTokenTypeText: [UIColor whiteColor],
-                       JLTokenTypeBackground: [UIColor colorWithRed:30.0/255.0 green:32.0/255.0 blue:40.0/255.0 alpha:1],
-                       JLTokenTypeComment: [UIColor colorWithRed:72.0/255 green:190.0/255 blue:102.0/255 alpha:1],
-                       JLTokenTypeDocumentationComment: [UIColor colorWithRed:72.0/255 green:190.0/255 blue:102.0/255 alpha:1],
-                       JLTokenTypeDocumentationCommentKeyword: [UIColor colorWithRed:72.0/255 green:190.0/255 blue:102.0/255 alpha:1],
-                       JLTokenTypeString: [UIColor colorWithRed:230.0/255 green:66.0/255 blue:75.0/255 alpha:1],
-                       JLTokenTypeCharacter: [UIColor colorWithRed:139.0/255 green:134.0/255 blue:201.0/255 alpha:1],
-                       JLTokenTypeNumber: [UIColor colorWithRed:139.0/255 green:134.0/255 blue:201.0/255 alpha:1],
-                       JLTokenTypeKeyword: [UIColor colorWithRed:195.0/255 green:55.0/255 blue:149.0/255 alpha:1],
-                       JLTokenTypePreprocessor: [UIColor colorWithRed:198.0/255.0 green:124.0/255.0 blue:72.0/255.0 alpha:1],
-                       JLTokenTypeURL: [UIColor colorWithRed:35.0/255 green:63.0/255 blue:208.0/255 alpha:1],
-                       JLTokenTypeOther: [UIColor colorWithRed:0.0/255 green:175.0/255 blue:199.0/255 alpha:1],
-                       JLTokenTypeOtherClassNames :  [UIColor colorWithHex:@"04afc8" alpha:1],
-                       JLTokenTypeOtherMethodNames :  [UIColor colorWithHex:@"04afc8" alpha:1]
-                       };
-            break;
-    }
-    return colors;
-}
 
 @end

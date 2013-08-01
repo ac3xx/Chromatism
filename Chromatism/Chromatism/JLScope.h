@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol JLScopeDelegate;
+
 @interface JLScope : NSObject
 
 // Designated initializors
@@ -64,5 +66,21 @@
  *  If TRUE, the instance will act as if its subscopes where connected directly to the instance's parent's scope. 
  */
 @property (nonatomic, assign, getter = isEmpty) BOOL empty;
+
+/**
+ *  A identifier of the scope
+ */
+@property (nonatomic, copy) NSString *identifier;
+
+/**
+ *  A simple delegate
+ */
+@property (nonatomic, weak) id<JLScopeDelegate> delegate;
+
+@end
+
+@protocol JLScopeDelegate <NSObject>
+
+- (void)scopeDidFinishPerforming:(JLScope *)scope;
 
 @end
