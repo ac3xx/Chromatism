@@ -57,5 +57,6 @@ FOUNDATION_EXPORT NSString *const JLTokenTypeOtherMethodNames;
 @interface Chromatism : NSObject
 
 + (NSDictionary *)colorsForTheme:(JLTokenizerTheme)theme;
++ (NSDictionary*)constantIdentifiers;
 
 @end

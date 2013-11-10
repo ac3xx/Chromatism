@@ -48,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A69953E182FEF3E00FC8CBE /* objectivec.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = objectivec.plist; path = Lexers/objectivec.plist; sourceTree = "<group>"; };
 		32102EE017A948F900CFA161 /* Chromatism+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Chromatism+Internal.h"; sourceTree = "<group>"; };
 		32102EEB17A95E2900CFA161 /* demo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = demo.txt; path = bundle.bundle/demo.txt; sourceTree = "<group>"; };
 		32102EEC17A95E2900CFA161 /* description.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = description.txt; path = bundle.bundle/description.txt; sourceTree = "<group>"; };
@@ -164,6 +165,7 @@
 			children = (
 				8F3AB95F1781C12F0023348A /* test.json */,
 				8F3AB91F1781C0BA0023348A /* Chromatism-Prefix.pch */,
+				1A69953E182FEF3E00FC8CBE /* objectivec.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

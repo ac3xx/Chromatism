@@ -89,4 +89,23 @@ NSString *const JLTokenTypeOtherClassNames = @"other_class_names";
     return colors;
 }
 
++ (NSDictionary*)constantIdentifiers {
+    return @{@"JLTokenTypeAttribute": JLTokenTypeAttribute,
+             @"JLTokenTypeText": JLTokenTypeText,
+             @"JLTokenTypeBackground": JLTokenTypeBackground,
+             @"JLTokenTypeComment": JLTokenTypeComment,
+             @"JLTokenTypeDocumentationComment": JLTokenTypeDocumentationComment,
+             @"JLTokenTypeDocumentationCommentKeyword": JLTokenTypeDocumentationCommentKeyword,
+             @"JLTokenTypeString": JLTokenTypeString,
+             @"JLTokenTypeCharacter": JLTokenTypeCharacter,
+             @"JLTokenTypeNumber": JLTokenTypeNumber,
+             @"JLTokenTypeKeyword": JLTokenTypeKeyword,
+             @"JLTokenTypePreprocessor": JLTokenTypePreprocessor,
+             @"JLTokenTypeProject": JLTokenTypeProject,
+             @"JLTokenTypeURL": JLTokenTypeURL,
+             @"JLTokenTypeOther": JLTokenTypeOther,
+             @"JLTokenTypeOtherMethodNames": JLTokenTypeOtherMethodNames,
+             @"JLTokenTypeOtherClassNames" : JLTokenTypeOtherClassNames};
+}
+
 @end

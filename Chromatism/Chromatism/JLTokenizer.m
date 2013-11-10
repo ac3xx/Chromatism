@@ -66,50 +66,68 @@
     JLScope *documentScope = [JLScope new];
     JLScope *lineScope = [JLScope new];
     
-    // Block and line comments
-    JLTokenPattern *blockComment = [self addToken:JLTokenTypeComment withIdentifier:BLOCK_COMMENT pattern:@"" andScope:documentScope];
-    blockComment.triggeringCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"/*"];
-    blockComment.expression = [NSRegularExpression regularExpressionWithPattern:@"/\\*.*?\\*/" options:NSRegularExpressionDotMatchesLineSeparators error:nil];
+    NSDictionary *constants = [Chromatism constantIdentifiers];
     
-    [self addToken:JLTokenTypeComment withIdentifier:LINE_COMMENT pattern:@"//.*+$" andScope:lineScope];
+    NSMutableDictionary *identifiedPatterns = [NSMutableDictionary new];
     
-    // Preprocessor macros
-    JLTokenPattern *preprocessor = [self addToken:JLTokenTypePreprocessor withIdentifier:nil pattern:@"^#.*+$" andScope:lineScope];
+    // Let's read the objectivec.plist file and generate these dynamically!
     
-    // #import <Library/Library.h>
-    // In xcode it only works for #import and #include, not all preprocessor statements.
-    [self addToken:JLTokenTypeString withPattern:@"<.*?>" andScope:preprocessor];
-    
-    // Strings
-    [[self addToken:JLTokenTypeString withPattern:@"(\"|@\")[^\"\\n]*(@\"|\")" andScope:lineScope] addScope:preprocessor];
-    
-    // Numbers
-    [self addToken:JLTokenTypeNumber withPattern:@"(?<=\\s)\\d+" andScope:lineScope];
-    
-    // New literals, for example @[]
-    // TODO: Highlight the closing bracket too, but with some special "nested-token-pattern"
-    [[self addToken:JLTokenTypeNumber withPattern:@"@[\\[|\\{|\\(]" andScope:lineScope] setOpaque:NO];
-    
-    // C function names
-    [[self addToken:JLTokenTypeOtherMethodNames withPattern:@"\\w+\\s*(?>\\(.*\\)" andScope:lineScope] setCaptureGroup:1];
-    
-    // Dot notation
-    [[self addToken:JLTokenTypeOtherMethodNames withPattern:@"\\.(\\w+)" andScope:lineScope] setCaptureGroup:1];
-    
-    // Method Calls
-    [[self addToken:JLTokenTypeOtherMethodNames withPattern:@"(\\w+)\\]" andScope:lineScope] setCaptureGroup:1];
-    
-    // Method call parts
-    [[self addToken:JLTokenTypeOtherMethodNames withPattern:@"(?<=\\w+):" andScope:lineScope] setCaptureGroup:0];
-    
-    NSString *keywords = @"true false yes no YES TRUE FALSE bool BOOL nil id void self NULL if else strong weak nonatomic atomic assign copy typedef enum auto break case const char continue do default double extern float for goto int long register return short signed sizeof static struct switch typedef union unsigned volatile while nonatomic atomic nonatomic readonly super";
-    
-    [self addToken:JLTokenTypeKeyword withKeywords:keywords andScope:lineScope];
-    [self addToken:JLTokenTypeKeyword withPattern:@"@[a-zA-Z0-9_]+" andScope:lineScope];
-    
-    // Other Class Names
-    [self addToken:JLTokenTypeOtherClassNames withPattern:@"\\b[A-Z]{3}[a-zA-Z]*\\b" andScope:lineScope];
-    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"css" ofType:@"plist"];
+    NSDictionary *lexer = [NSDictionary dictionaryWithContentsOfFile:path];
+    for (NSDictionary *pattern in [lexer objectForKey:@"Patterns"]) {
+        NSString *token = [constants objectForKey:[pattern objectForKey:@"token"]];
+        NSString *patternStr = [pattern objectForKey:@"pattern"];
+        if (!patternStr)
+            patternStr = @"";
+        NSArray *scopes = [pattern objectForKey:@"scope"];
+        for (NSString *scope in scopes) {
+            JLTokenPattern *tokenPattern;
+            JLScope *theScope;
+            if ([scope isEqualToString:@"documentScope"])
+                theScope = documentScope;
+            else if ([scope isEqualToString:@"lineScope"])
+                theScope = lineScope;
+            else if ([[identifiedPatterns allKeys] containsObject:scope])
+                theScope = [identifiedPatterns objectForKey:scope];
+            else {
+                NSLog(@"Scope %@ not found, skipping", scope);
+                continue;
+            }
+            
+            if ([pattern objectForKey:@"expressionOption"]) {
+                NSString *option =[pattern objectForKey:@"expressionOption"];
+                tokenPattern = [self addToken:token withIdentifier:[pattern objectForKey:@"identifier"] pattern:@"" andScope:theScope];
+                if ([option isEqualToString:@"global"])
+                    tokenPattern.expression = [NSRegularExpression regularExpressionWithPattern:patternStr options:NSRegularExpressionSearch error:nil];
+                else
+                    tokenPattern.expression = [NSRegularExpression regularExpressionWithPattern:patternStr options:NSRegularExpressionDotMatchesLineSeparators error:nil];
+            } else {
+                if ([pattern objectForKey:@"identifier"]) {
+                    tokenPattern = [self addToken:token withIdentifier:[pattern objectForKey:@"identifier"] pattern:patternStr andScope:theScope];
+                    [identifiedPatterns setObject:tokenPattern forKey:[pattern objectForKey:@"identifier"]];
+                } else if ([pattern objectForKey:@"keywords"]) {
+                    tokenPattern = [self addToken:token withKeywords:[pattern objectForKey:@"keywords"] andScope:theScope];
+                } else {
+                    NSLog(@"token %@ pattern %@ scope %@", token, patternStr, theScope);
+                    tokenPattern = [self addToken:token withPattern:patternStr andScope:theScope];
+                }
+            }
+            
+            if ([pattern objectForKey:@"triggeringCharacterSet"]) {
+                NSString *setStr = [pattern objectForKey:@"triggeringCharacterSet"];
+                tokenPattern.triggeringCharacterSet = [NSCharacterSet characterSetWithCharactersInString:setStr];
+            }
+            
+            if ([pattern objectForKey:@"captureGroup"]) {
+                tokenPattern.captureGroup = [[pattern objectForKey:@"captureGroup"] integerValue];
+            }
+            
+            if ([pattern objectForKey:@"opaque"]) {
+                tokenPattern.opaque = [[pattern objectForKey:@"opaque"] boolValue];
+            }
+        }
+    }
+        
     [documentScope addSubscope:lineScope];
     
     self.documentScope = documentScope;
@@ -151,7 +169,7 @@
 - (void)scope:(JLScope *)scope didChangeIndexesFrom:(NSIndexSet *)oldSet to:(NSIndexSet *)newSet
 {
     if ([self.delegate respondsToSelector:@selector(scope:didFinishProcessing:)]) [self.delegate scope:scope didFinishProcessing:self];
-    
+    NSLog(@"%i %i", [self.documentScope.subscopes containsObject:scope], scope!=self.lineScope);
     if ([self.documentScope.subscopes containsObject:scope] && scope != self.lineScope)
     {
         NSMutableIndexSet *removedIndexes = oldSet.mutableCopy;
@@ -250,6 +268,8 @@
     NSParameterAssert(type);
     NSParameterAssert(pattern);
     NSParameterAssert(scope);
+    
+    NSLog(@"type %@ identifier %@ pattern \"%@\" scope %@", type, identifier, pattern, scope);
     
     JLTokenPattern *token = [JLTokenPattern tokenPatternWithPattern:pattern];
     token.identifier = identifier;
