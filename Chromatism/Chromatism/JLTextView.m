@@ -140,11 +140,14 @@
             
             prefixString = [prefixString stringByAppendingString:@"    "];
         } else if ([lastCharacter isEqualToString:@"}"]) {
-            if ([[prefixString substringFromIndex:prefixString.length - 4] isEqualToString:@"    "]) {
-                prefixString = [prefixString substringToIndex:prefixString.length - 4];
-            }
-            else if ([[prefixString substringFromIndex:prefixString.length - 1] isEqualToString:@"\t"]) {
+            if ([[prefixString substringFromIndex:prefixString.length - 1] isEqualToString:@"\t"]) {
                 prefixString = [prefixString substringToIndex:prefixString.length - 1];
+                [textView replaceRange:[self rangeWithRange:NSMakeRange(range.location - 2, 1)] withText:@""];
+                range.location = range.location - 1;
+            } else if ([[prefixString substringFromIndex:prefixString.length - 4] isEqualToString:@"    "]) {
+                prefixString = [prefixString substringToIndex:prefixString.length - 4];
+                [textView replaceRange:[self rangeWithRange:NSMakeRange(range.location - 5, 4)] withText:@""];
+                range.location = range.location - 4;
             }
         }
         [textView replaceRange:[self rangeWithRange:range] withText:prefixString];
