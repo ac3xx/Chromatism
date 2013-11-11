@@ -72,7 +72,7 @@
     
     // Let's read the objectivec.plist file and generate these dynamically!
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"css" ofType:@"plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"objectivec" ofType:@"plist"];
     NSDictionary *lexer = [NSDictionary dictionaryWithContentsOfFile:path];
     for (NSDictionary *pattern in [lexer objectForKey:@"Patterns"]) {
         NSString *token = [constants objectForKey:[pattern objectForKey:@"token"]];
